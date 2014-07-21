@@ -1,0 +1,122 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Animal Crossing: City Folk data tracker</title>
+
+	<script src="http://cdn.firebase.com/js/client/1.0.6/firebase.js"></script>
+	<script src="//cdn.firebase.com/libs/angularfire/0.7.1/angularfire.min.js"></script>
+	
+	<link rel="stylesheet" href="bootstrap.min.css" />
+	<style type="text/css">
+		
+		body
+		{
+			padding: 10px;
+		}
+		div.tab
+		{
+			background-color:lightgray;
+			display:inline-block;
+			width:100px;
+		}
+		
+		div.tab.active
+		{
+			background-color:lightblue;
+			color:white;
+		}
+		
+		div.tabContentArea
+		{
+			margin: 20px;
+			background-color: lightgreen;
+		}
+
+		table
+		{
+			border-collapse:collapse;
+		}		
+		table th, table td 
+		{
+			border: 1px solid black;
+			padding: 2px;
+			min-width: 80px;
+			
+		}
+		
+		form
+		{
+			padding: 0px 10px 10px 10px;
+			margin: 10px 10px 10px 10px;
+			border: 1px solid lightgray;
+			background-color: white;
+			width: auto;
+		}
+
+		.ng-invalid.ng-dirty 
+		{
+			border-color: #FA787E;
+		}
+		.ng-valid.ng-dirty 
+		{
+			border-color: #78FA89;
+		}
+
+		// form styling
+		form fieldset { border:1px solid green }
+		form label {
+			float:left;
+			width:25%;
+			margin-right:0.5em;
+			padding-top:0.2em;
+			text-align:right;
+			font-weight:bold;
+		}
+		
+		input.submit
+		{
+			margin-left: 25%;
+			width: 50%;
+			align: center;
+		}
+  
+	</style>
+	
+</head>
+<body ng-app="cityFolk"  ng-controller="cityFolkController as cf">
+
+	<div ng-controller="tabController as tabCtrl">
+	
+		<div class="tabControlHeader">
+			<div class="tab" ng-class="{active:tabCtrl.tabIsActive(0)}" ng-click="tabCtrl.setTab(0)">Fish data
+			</div>
+		
+			<div class="tab" ng-class="{active:tabCtrl.tabIsActive(1)}" ng-click="tabCtrl.setTab(1)">Bug data
+			</div>
+		</div>
+		<!-- display current fish data -->
+		
+		<div class="tabContentArea" >
+			<!-- FISH -->
+			<div ng-show="tabCtrl.tabIsActive(0)">
+				<fish-table></fish-table>
+				<add-fish-form></add-fish-form>			
+			</div>
+			
+			<!-- BUGS -->
+			<div ng-show="tabCtrl.tabIsActive(1)">
+				<bug-table></bug-table>
+				<add-bug-form></add-bug-form>
+			</div>
+		</div>
+		
+	</div>
+	
+	<script type="text/javascript" src="angular.min.js"></script>
+	<script type="text/javascript" src="cityfolk.js"></script>
+	<script type="text/javascript" src="bugs.js"></script>
+	<script type="text/javascript" src="fish.js"></script>
+
+</body>
+</html>

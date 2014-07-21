@@ -1,0 +1,79 @@
+				<form name="addBugForm" ng-show="cf.showAddBug" ng-submit="addBugForm.$valid && cf.addBug()" novalidate>
+					<fieldset>
+					<legend>Add a Bug</legend>
+
+					<label for="name">Name:</label>
+					<input id="name" ng-model="cf.currentBug.name" type="text" required />
+
+					<br/>
+					<label for="price">Sell Price:</label>
+					<input id="price" name="price" ng-model="cf.currentBug.sellPrice" type="number" required />
+					<br/>
+
+					<label>Location:</label>
+					<select ng-model="cf.currentBug.location" required>
+						<option value="Tree Trunk" >Tree Trunk</option>
+						<option value="Flower">Flower</option>
+						<option value="Coconut Tree">Coconut Tree</option>
+						<option value="Shake Tree">Shake Tree</option>
+						<option value="On Water">On Water</option>
+						<option value="Under Rock">Under Rock</option>
+					</select>
+					<br/>
+
+					<label>Time:</label>
+					<select ng-model="cf.currentBug.time">
+						<option value="All Day" >All Day</option>
+						<option value="Evening">Evening</option>
+						<option value="Morning">Morning</option>
+						<option value="Day">Day</option>
+					</select>
+					<br/>
+
+					<label>Rarity:</label>
+					<select ng-model="cf.currentBug.rarity">
+						<option value="Common" >Common</option>
+						<option value="Uncommon">Uncommon</option>
+						<option value="Rare">Rare</option>
+					</select>
+					<br/>
+
+					<label>Starting Month:</label>
+					<select ng-model="cf.currentBug.startMonth">
+						<option value="January" >January</option>
+						<option value="February">February</option>
+						<option value="March">March</option>
+						<option value="April" >April</option>
+						<option value="May">May</option>
+						<option value="June">June</option>
+						<option value="July" >July</option>
+						<option value="August">August</option>
+						<option value="September">September</option>
+						<option value="October" >October</option>
+						<option value="November">November</option>
+						<option value="December">December</option>
+					</select>
+					<br/>
+
+					
+					<label>Ending Month:</label>
+					<select ng-model="cf.currentBug.endMonth">
+						<option value="January">January</option>
+						<option value="February">February</option>
+						<option value="March">March</option>
+						<option value="April" >April</option>
+						<option value="May">May</option>
+						<option value="June">June</option>
+						<option value="July" >July</option>
+						<option value="August">August</option>
+						<option value="September">September</option>
+						<option value="October" >October</option>
+						<option value="November">November</option>
+						<option value="December">December</option>	
+					</select>
+					<br/>
+
+
+					<input type="submit" value="submit" class="submit" />
+					</fieldset>
+				</form>

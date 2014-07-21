@@ -1,0 +1,20 @@
+<table>
+	<thead>
+		<th>Name</th>
+		<th>Sell Price</th>
+		<th>Location</th>
+		<th>Time</th>
+		<th>Starting</th>
+		<th>Ending</th>
+		<th>Rarity</th>
+	</thead>
+	<tr ng-repeat="bug in cf.allBugs">
+		<td>{{bug.name}}</td>
+		<td>{{bug.sellPrice | currency}}</td>
+		<td>{{bug.location}}</td>
+		<td>{{bug.time}}</td>
+		<td>{{bug.startMonth}}</td>
+		<td>{{bug.endMonth}}</td>
+		<td>{{bug.rarity}}</td>
+	</tr>
+</table>
