@@ -7,7 +7,9 @@
 		<th>Starting</th>
 		<th>Ending</th>
 		<th>Rarity</th>
-	</thead>
+		<th class="deleteCol"></th>
+
+		</thead>
 	<tr ng-repeat="fish in cf.allFish">
 		<td>{{fish.name}}</td>
 		<td>{{fish.sellPrice | currency}}</td>
@@ -16,5 +18,7 @@
 		<td>{{fish.startMonth}}</td>
 		<td>{{fish.endMonth}}</td>
 		<td>{{fish.rarity}}</td>
+		
+		<td class="deleteCol"><div class="deleteButton" ng-click="cf.deleteFish(fish.name)">X</div></td>
 	</tr>
 </table>
