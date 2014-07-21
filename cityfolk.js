@@ -15,6 +15,38 @@
 			}	,
 			addFish: function(fish) {
 				ref.push(fish);
+			},
+			updateFish: function(fish)
+			{
+				ref.once('value', function(allFishSnapshot) 
+				{
+					allFishSnapshot.forEach(function(fishSnapshot)
+					{
+						// this works, but it isnt causing the rendered table to update
+						var name = fishSnapshot.child('name').val();
+						if (name === fish.name)
+						{
+							console.log("updating " + name );
+							fishSnapshot.ref().set(fish);
+						}
+					});
+				});
+			},
+			deleteFish: function(fish)
+			{
+				ref.once('value', function(allFishSnapshot) 
+				{
+					allFishSnapshot.forEach(function(fishSnapshot)
+					{
+						// this works, but it isnt causing the rendered table to update
+						var name = fishSnapshot.child('name').val();
+						if (name === fish.name)
+						{
+							console.log("Deleting " + name);
+							fishSnapshot.ref().remove();
+						}
+					});
+				});
 			}
 		}
 	});
@@ -58,6 +90,9 @@
 				{
 					// already exists, modify
 					alreadyExists=true;
+					fishService.updateFish(this.currentFish);
+					
+					// Mirror the result in the display data. Shouldn't the binding mean I don't need to do this?
 					this.allFish[i] = this.currentFish;
 					break;
 				}
@@ -71,18 +106,19 @@
 			this.currentFish = [];
 		}
 		
-		this.deleteFish = function(name)
+		this.deleteFish = function(fish)
 		{
+			fishService.deleteFish(fish);
+			
+			// Mirror the result in the display data. Shouldn't the binding mean I don't need to do this?
 			for (var i=0; i < this.allFish.length; i++)
 			{
-				if (this.allFish[i].name === name)
+				if (this.allFish[i].name === fish.name)
 				{
-					// already exists, modify
-					alreadyExists=true;
-					this.allFish.splice(i, 1);
+					this.allFish.splice(i,1);
 					break;
 				}
-			}		
+			}
 		}
 		
 		this.currentBug = [];
