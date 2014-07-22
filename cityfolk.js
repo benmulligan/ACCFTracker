@@ -68,11 +68,38 @@
 		}
 	});
 
+
+	// converts 0-11 to month
+	app.filter('monthName', [function() {
+		return function (monthNumber) {
+		
+			if (monthNumber < 0 || monthNumber > 11) 
+				return 'invalid';
+			
+			var monthNames = [ 'Jan', 'Feb', 'Mar', 'Apr', 'May', 'June',
+				'July', 'Aug', 'Sept', 'Oct', 'Nov', 'Dec' ];
+			return monthNames[monthNumber];
+		}
+	}]);
+	
+	app.filter('fishFilter', [function() {
+		return function(items,filter) 
+		{			
+			if (filter.fishDisplay['availableOnly']) 
+			{
+				items = items.filter(inMonthRange);
+			}
+			return items;
+		}
+	}]) ;
+	
 	app.controller("cityFolkController", [ "FishDataService", "BugDataService", function(fishService, bugService){
 	
 	//	var cfCtrl = this;
 	
+		this.fishFilter = true;
 		//$scope.user = "Guest " + Math.round(Math.random()*101);
+		this.fishDisplay = [];
 		
 		this.allFish = fishService.getFish();
 		this.allBugs = bugService.getBugs();
@@ -80,7 +107,40 @@
 		this.showAddFish = true;
 		this.showAddBug = true;
 		
-		this.currentFish = [];
+		this.setFishFilter = function()
+		{
+		
+			console.log('available = ' + this.fishDisplay['availableOnly']);
+			if (this.fishDisplay['availableOnly'])
+			{
+				this.fishFilter = function(item) 
+				{
+					var s = item.startMonth; // day of the week
+					var e = item.endMonth;
+					var today = new Date();
+					var currentMonth =  today.getMonth();
+		  
+					//console.log("s: " + s + " e: " + e + " now: " + currentMonth);
+		  
+					if (s < e)
+					{
+						return s <= currentMonth && currentMonth <= e;
+					}
+					else if (s > e)
+					{
+						return s <= currentMonth || currentMonth <= e;
+					}		
+					else
+						return true;
+				};
+			}
+			else
+			{
+				this.fishFilter = true;
+			}
+		}
+		
+		this.currentFish = {'time':[]};
 		this.addFish = function()
 		{
 			var alreadyExists = false;
@@ -103,7 +163,7 @@
 				fishService.addFish(this.currentFish);
 			}
 			
-			this.currentFish = [];
+			this.currentFish = {'time':[]};
 		}
 		
 		this.deleteFish = function(fish)

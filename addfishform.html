@@ -21,14 +21,11 @@
 					<br/>
 
 					<label>Time:</label>
-					<select ng-model="cf.currentFish.time">
-						<option value="All Day" >All Day</option>
-						<option value="Evening">Evening</option>
-						<option value="Morning">Morning</option>
-						<option value="Day">Day</option>
-					</select>
-					<br/>
-
+					<div style="display:inline-block;">
+						<input type="checkbox" ng-model="cf.currentFish.time['morning']"/>Morning (4AM-8AM)<br/>
+						<input type="checkbox" ng-model="cf.currentFish.time['day']" />Day (8AM-5PM)<br/>
+						<input type="checkbox" ng-model="cf.currentFish.time['night']" />Night (5PM-4AM)<br/>
+					</div><br/>
 					<label>Rarity:</label>
 					<select ng-model="cf.currentFish.rarity">
 						<option value="Common" >Common</option>
@@ -39,36 +36,36 @@
 
 					<label>Starting Month:</label>
 					<select ng-model="cf.currentFish.startMonth">
-						<option value="January" >January</option>
-						<option value="February">February</option>
-						<option value="March">March</option>
-						<option value="April" >April</option>
-						<option value="May">May</option>
-						<option value="June">June</option>
-						<option value="July" >July</option>
-						<option value="August">August</option>
-						<option value="September">September</option>
-						<option value="October" >October</option>
-						<option value="November">November</option>
-						<option value="December">December</option>
+						<option value="0" >January</option>
+						<option value="1">February</option>
+						<option value="2">March</option>
+						<option value="3" >April</option>
+						<option value="4">May</option>
+						<option value="5">June</option>
+						<option value="6" >July</option>
+						<option value="7">August</option>
+						<option value="8">September</option>
+						<option value="9" >October</option>
+						<option value="10">November</option>
+						<option value="11">December</option>
 					</select>
 					<br/>
 
 					
 					<label>Ending Month:</label>
 					<select ng-model="cf.currentFish.endMonth">
-						<option value="January">January</option>
-						<option value="February">February</option>
-						<option value="March">March</option>
-						<option value="April" >April</option>
-						<option value="May">May</option>
-						<option value="June">June</option>
-						<option value="July" >July</option>
-						<option value="August">August</option>
-						<option value="September">September</option>
-						<option value="October" >October</option>
-						<option value="November">November</option>
-						<option value="December">December</option>	
+						<option value="0">January</option>
+						<option value="1">February</option>
+						<option value="2">March</option>
+						<option value="3" >April</option>
+						<option value="4">May</option>
+						<option value="5">June</option>
+						<option value="6" >July</option>
+						<option value="7">August</option>
+						<option value="8">September</option>
+						<option value="9" >October</option>
+						<option value="10">November</option>
+						<option value="11">December</option>	
 					</select>
 					<br/>
 

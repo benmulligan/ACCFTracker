@@ -4,19 +4,21 @@
 		<th>Sell Price</th>
 		<th>Location</th>
 		<th>Time</th>
-		<th>Starting</th>
-		<th>Ending</th>
+		<th>Months</th>
 		<th>Rarity</th>
 		<th class="deleteCol"></th>
 
 		</thead>
-	<tr ng-repeat="fish in cf.allFish">
+	<tr ng-repeat="fish in cf.allFish | filter:cf.fishFilter">
 		<td>{{fish.name}}</td>
 		<td>{{fish.sellPrice | currency}}</td>
 		<td>{{fish.location}}</td>
-		<td>{{fish.time}}</td>
-		<td>{{fish.startMonth}}</td>
-		<td>{{fish.endMonth}}</td>
+		<td>
+			<div ng-show="fish.time['morning']">4AM-8AM</div>
+			<div ng-show="fish.time['day']">8AM-5PM</div>
+			<div ng-show="fish.time['night']">5PM-4AM</div>
+		</td>
+		<td>{{fish.startMonth | monthName}} - {{fish.endMonth | monthName}}</td>
 		<td>{{fish.rarity}}</td>
 		
 		<td class="deleteCol"><div class="deleteButton" ng-click="cf.deleteFish(fish)">[X]</div></td>

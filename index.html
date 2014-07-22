@@ -6,8 +6,10 @@
 
 	<script src="http://cdn.firebase.com/js/client/1.0.6/firebase.js"></script>
 	<script src="//cdn.firebase.com/libs/angularfire/0.7.1/angularfire.min.js"></script>
+	<script src="utilityFunctions.js"></script>
 	
 	<link rel="stylesheet" href="bootstrap.min.css" />
+
 	<style type="text/css">
 		
 		body
@@ -42,7 +44,11 @@
 		table
 		{
 			border-collapse:collapse;
-		}		
+			padding: 0px 10px 10px 10px;
+			margin: 10px 10px 10px 10px;
+			width:auto;
+			
+			}		
 		table th, table td 
 		{
 			border: 1px solid black;
@@ -85,7 +91,7 @@
 			text-align:right;
 			font-weight:bold;
 		}
-		
+				
 		input.submit
 		{
 			margin-left: 25%;
@@ -112,6 +118,10 @@
 		<div class="tabContentArea" >
 			<!-- FISH -->
 			<div ng-show="tabCtrl.tabIsActive(0)">
+				<form>
+					<input type="checkbox" ng-model="cf.fishDisplay['availableOnly']" ng-change="cf.setFishFilter()"  /> Only Show Currently Available</br>
+					<input type="checkbox" ng-change="cf.setFishFilter()" ng-model="cf.fishDisplay['uncaughtOnly']" /> Only Show Uncaught</br>
+				</form><p/>
 				<fish-table></fish-table>
 				<add-fish-form></add-fish-form>			
 			</div>
